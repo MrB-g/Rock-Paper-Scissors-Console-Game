@@ -72,7 +72,6 @@ public class RockPaperScissors {
         }
 
         String winner = decideWinner(playerChoice, computerChoice);
-
         System.out.println("");
         System.out.println(padLeft("Computer Choice : " + computerChoice.toUpperCase(), indent));
         System.out.println(padLeft("Player Choice : " + playerChoice.toUpperCase(), indent));
@@ -89,6 +88,44 @@ public class RockPaperScissors {
         }
 
         System.out.println("");
+    }
+
+    public static void playAgain(){
+        Scanner playerInput = new Scanner(System.in);
+        System.out.print(padLeft("Do you want to play again? | Please Type \"Yes\" or \"No\" : ", indent));
+        String playAgainOrNot = playerInput.nextLine().trim().toLowerCase();
+
+        if(playAgainOrNot.toLowerCase().equals("yes")){
+            System.out.println("");
+            startTheGame();
+            playerInput.close();
+        } else if(playAgainOrNot.toLowerCase().equals("no")){
+            playerExitOrNot(playerInput);
+        } else { 
+            System.out.println(padLeft("\u001B[31m\u001B[1mPlease type only \"Yes\" or \"No\".\u001B[0m", indent));
+            try {
+                Thread.sleep(500);
+            } catch(Exception error){};
+        }
+        playAgain();
+    }
+
+    public static void playerExitOrNot(Scanner playerInput){
+        System.out.print(padLeft("Are you sure you want to exit? | Please Type \"Yes\" or \"No\" : ", indent));
+        String exitOrNot = playerInput.nextLine().trim().toLowerCase();
+        if(exitOrNot.equals("yes")){
+            System.out.println(padLeft("Hope to see you again...", indent));
+            System.out.println("");
+            System.exit(0);
+        } else if(exitOrNot.equals("no")){
+            playAgain();
+        } else {
+            System.out.println(padLeft("\u001B[31m\u001B[1mPlease type only \"Yes\" or \"No\".\u001B[0m", indent));
+            try {
+                Thread.sleep(500);
+            } catch(Exception error){};
+        }
+        playerExitOrNot(playerInput);
     }
 
     public static void main(String[] args){
