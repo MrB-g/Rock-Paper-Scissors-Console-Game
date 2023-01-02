@@ -2,7 +2,8 @@
 Rock paper scissors is a hand game usually played between two people, in which each player simutaneously forms one of three shapes with an outstretched hand. These shapes are "rock", "paper", and scissors".
 
 ## Screenshots
-<img src="" alt="drawing" style="width:500px;"/>
+<img src="https://github.com/MrB-g/Rock-Paper-Scissors-Console-Game/blob/main/media/RPS1.png" alt="drawing" style="width:500px;"/>
+<img src="https://github.com/MrB-g/Rock-Paper-Scissors-Console-Game/blob/main/media/RPS2.png" alt="drawing" style="width:500px;"/>
 
 ## Installation
 
