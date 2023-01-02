@@ -88,6 +88,7 @@ public class RockPaperScissors {
         }
 
         System.out.println("");
+        playAgain();
     }
 
     public static void playAgain(){
