@@ -1,0 +1,112 @@
+import necesssary libraries
+
+declare class RockPaperScissors 
+    declare static variable indent with value 2 
+
+    declare static function main with input param args 
+        print new line 
+        print "Welcome to Rock, Paper, Scissors Game!" 
+        print new line 
+        print "How to win the game?" 
+        print "| Rock beats Scissors." 
+        print "| Scissors beats Paper." 
+        print "| Paper beats Rock." 
+        print new line 
+        call startTheGame 
+
+    declare function padLeft with input params sentence and indent 
+        return indent + sentence 
+
+    declare function decideWinner with input params playerChoice and computerChoice 
+        declare variable winner 
+        if playerChoice is "rock" and computerChoice is "scissors" 
+            set winner to "player" 
+        else if playerChoice is "paper" and computerChoice is "rock" 
+            set winner to "player" 
+        else if playerChoice is "scissors" and computerChoice is "paper" 
+            set winner to "player" 
+        else if playerChoice is equal to computerChoice 
+            set winner to "both" 
+        else  
+            set winner to "computer" 
+        return winner 
+
+    declare function checkArrayInclude with input params items and checkItem 
+        declare variable result and initialize to false 
+        for each item in items 
+            if item is equal to checkItem 
+                set result to true 
+                break loop 
+        return result 
+    
+    declare function playAgain 
+        create scanner object playerInput 
+        print "Do you want to play again? | Please Type \"Yes\" or \"No\" : " 
+        declare variable playAgainOrNot and assign it the value of the input from playerInput 
+        set playAgainOrNot to lowercase and trimmed version of itself 
+        if playAgainOrNot is "yes" 
+            print new line 
+            call startTheGame 
+            close playerInput 
+        else if playAgainOrNot is "no" 
+            call playerExitOrNot with playerInput as input param 
+        else 
+            print "Please type only \"Yes\" or \"No\"." 
+            sleep for 500 milliseconds 
+        call playAgain 
+
+    declare function playerExitOrNot with input param playerInput 
+        print "Are you sure you want to exit? | Please Type \"Yes\" or \"No\" : " 
+        declare variable exitOrNot and assign it the value of the input from playerInput 
+        set exitOrNot to lowercase and trimmed version of itself 
+        if exitOrNot is "yes" 
+            print "Hope to see you again..." 
+            print new line 
+            exit the program 
+        else if exitOrNot is "no" 
+            call playAgain 
+        else 
+            print "Please type only \"Yes\" or \"No\"." 
+            sleep for 500 milliseconds 
+        call playerExitOrNot with playerInput as input param 
+
+    declare function startTheGame 
+        declare array items with elements "rock", "paper", "scissors" 
+        declare variable computerChoiceIndex and assign it a random number between 0 and 2 
+        declare variable computerChoice and assign it the element of items at index computerChoiceIndex 
+        declare variable playerChoice 
+        create scanner object playerInput 
+        print "Please choose your move." 
+        print "1. Rock" 
+        print "2. Paper" 
+        print "3. Scissors" 
+        print new line 
+        start a loop 
+            print "Type here to choose : " 
+            assign playerChoice the value of the input from playerInput 
+            set playerChoice to lowercase and trimmed version of itself 
+            try to parse playerChoice as integer 
+                assign itemIndex the value of playerChoice - 1 
+                try to assign playerChoice the value of the element of items at index itemIndex 
+                break the loop 
+            catch an exception 
+                assign isInclude the value returned by calling checkArrayInclude with items and playerChoice as input params 
+                if isInclude is true 
+                    break the loop 
+                else 
+                    print "Please type only valid items." 
+        assign winner the value returned by calling decideWinner with playerChoice and computerChoice as input params 
+        print new line 
+        print "Computer Choice : " + computerChoice in uppercase 
+        print "Player Choice : " + playerChoice in uppercase 
+        print new line 
+        if winner is "player" 
+            print "YOU WIN THE GAME." in green 
+        else if winner is "computer" 
+            print "YOU LOSE THE GAME." in red 
+        else if winner is "both" 
+            print "GAME IS TIED | CHOOSE AGAIN." in yellow 
+            print new line 
+            call startTheGame 
+        print new line 
+        call playAgain 
